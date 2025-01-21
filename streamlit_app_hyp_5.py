@@ -162,7 +162,7 @@ graph2 = create_bar_plot(filtered_data2, 'updated_delivery_date', 'TOTPAL',title
 
 col1, col2,col3 = st.columns(3)
 col1.metric("Total cost original (2023)", f"${original_cost:,.2f}")
-col2..metric("Total cost updated (2023)", f"${updated_cost:,.2f}")
+col2.metric("Total cost updated (2023)", f"${updated_cost:,.2f}")
 col3.metric("Total Savings in 2023", f"${savings:,.2f}")
 st.plotly_chart(graph1)
 st.plotly_chart(graph2)
