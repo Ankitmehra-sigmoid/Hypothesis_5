@@ -62,7 +62,7 @@ savings_nitish=filtered_data_n['total_cost_cost_sheet_as_is_inflated'].sum()-fil
 months = st.sidebar.multiselect(
     "Month_orig",
     options=filtered_data['Month_orig'].unique(),
-    default=filtered_data['Month_orig'].unique()
+    default=[1,2]
 )
 # filtered_data = filtered_data[filtered_data['Month_orig'].isin(months)]
 
