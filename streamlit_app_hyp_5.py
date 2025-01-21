@@ -156,14 +156,15 @@ graph2 = create_bar_plot(filtered_data2, 'updated_delivery_date', 'TOTPAL',title
 # graph3 = create_bar_plot(filtered_data_3, 'updated_delivery_date', 'TOTPAL', width=800, height=350)
 
 # Display the graphs
-st.metric("Total cost original (2023)", f"${original_cost:,.2f}")
-st.metric("Total cost updated (2023)", f"${updated_cost:,.2f}")
-st.metric("Total Savings (2023)", f"${savings:,.2f}")
-st.plotly_chart(graph1)
-# col1, col2 = st.columns(2)
-# col1.plotly_chart(graph2)
-# col2.metric("Total Savings in 2023", f"${savings:,.2f}")
+# st.metric("Total cost original (2023)", f"${original_cost:,.2f}")
+# st.metric("Total cost updated (2023)", f"${updated_cost:,.2f}")
+# st.metric("Total Savings (2023)", f"${savings:,.2f}")
 
+col1, col2,col3 = st.columns(3)
+col1.metric("Total cost original (2023)", f"${original_cost:,.2f}")
+col2..metric("Total cost updated (2023)", f"${updated_cost:,.2f}")
+col3.metric("Total Savings in 2023", f"${savings:,.2f}")
+st.plotly_chart(graph1)
 st.plotly_chart(graph2)
 
 # col1, col2 = st.columns([7, 1])  # Set column proportions (3:1 for larger graph and metric alignment)
