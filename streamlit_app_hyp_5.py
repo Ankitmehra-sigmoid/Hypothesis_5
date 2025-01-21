@@ -149,7 +149,7 @@ def create_bar_plot(df, date_col, qty_col, title, width=900, height=350):
 
 
 # Graphs
-st.header("Graphs")
+# st.header("Graphs")
 graph1 = create_bar_plot(filtered_data, 'Lst.datum', 'TOTPAL',title='Shipment Profile Without Consolidation')
 graph2 = create_bar_plot(filtered_data2, 'updated_delivery_date', 'TOTPAL',title='Shipment Profile After Consolidation', width=900, height=350)
 # graph3 = create_bar_plot(filtered_data_3, 'updated_delivery_date', 'TOTPAL', width=800, height=350)
