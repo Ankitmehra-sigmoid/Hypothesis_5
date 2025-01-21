@@ -105,7 +105,7 @@ filtered_data_n2= filtered_data_n2[filtered_data_n2['updated_delivery_date']<=la
 
 
 # Display tiles
-st.title("Cost Dashboard")
+# st.title("Cost Dashboard")
 
 
 # # Bar plot function
