@@ -55,7 +55,8 @@ filtered_data2= filtered_data2[filtered_data2['DC'] == dc]
 filtered_data_n = filtered_data_n[filtered_data_n['DC'] == dc]
 filtered_data_n2=filtered_data_n2[filtered_data_n2['DC']==dc]
 
-
+original_cost=filtered_data['Total cost orig'].sum()
+updated_cost=filtered_data2['Total cost updated'].sum()
 savings=filtered_data['Total cost orig'].sum()-filtered_data2['Total cost updated'].sum()
 savings_nitish=filtered_data_n['total_cost_cost_sheet_as_is_inflated'].sum()-filtered_data_n2['total_cost_cost_sheet_after_inflated'].sum()
                      
@@ -155,7 +156,9 @@ graph2 = create_bar_plot(filtered_data2, 'updated_delivery_date', 'TOTPAL',title
 # graph3 = create_bar_plot(filtered_data_3, 'updated_delivery_date', 'TOTPAL', width=800, height=350)
 
 # Display the graphs
-st.metric("Total Savings in 2023", f"${savings:,.2f}")
+st.metric("Total cost original (2023)", f"${original_cost:,.2f}")
+st.metric("Total cost updated (2023)", f"${updated_cost:,.2f}")
+st.metric("Total Savings (2023)", f"${savings:,.2f}")
 st.plotly_chart(graph1)
 # col1, col2 = st.columns(2)
 # col1.plotly_chart(graph2)
