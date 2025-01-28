@@ -111,14 +111,14 @@ def add_weekend_data(df, year_col='Lst.datum', week_col='week_of_year', totpal_c
 
 
 ##### approach where base cost calculation is done using nitish cost calc function +  all dates
-data=pd.read_csv('df_original_scenario_new_pbi.csv',parse_dates=['Lst.datum'])
+data=pd.read_excel('df_original_scenario_new_pbi.xlsx',parse_dates=['Lst.datum'])
 
-data2=pd.read_csv('df_approach_1_pbi.csv',parse_dates=['updated_delivery_date'])
+data2=pd.read_excel('df_approach_1_pbi copy.xlsx',parse_dates=['updated_delivery_date'])
 
-data_up_nitish=pd.read_csv('df_approach_2_pbi.csv',parse_dates=['updated_delivery_date'])
+data_up_nitish=pd.read_excel('df_approach_2_pbi.xlsx',parse_dates=['updated_delivery_date'])
 
 
-df_best_scenario=pd.read_csv('/Users/ankit/Downloads/EDA_IB/New_Client_Data/streamlit/df_best_scenario_info_approach_2.csv')
+df_best_scenario=pd.read_csv('df_best_scenario_info_approach_2.csv')
 
 
 ## adding Week column
@@ -226,46 +226,11 @@ savings_nitish=original_cost_nitish-updated_cost_nitish
 
 
 ##save_data
-filtered_data.to_csv('filtered_data_before.csv',index=False)
-filtered_data2.to_csv('filtered_data_after.csv',index=False)
-filtered_data_n2.to_csv('filtered_data_after_nitish.csv',index=False)
-
-# Display tiles
-# st.title("Cost Dashboard")
+# filtered_data.to_csv('filtered_data_before.csv',index=False)
+# filtered_data2.to_csv('filtered_data_after.csv',index=False)
+# filtered_data_n2.to_csv('filtered_data_after_nitish.csv',index=False)
 
 
-
-# Bar plot function
-def create_bar_plot(df, date_col, qty_col, title, width=900, height=350):
-    df[date_col] = df[date_col].astype(str)
-    fig = px.bar(
-        df, 
-        x=date_col, 
-        y=qty_col, 
-        labels={date_col: 'Delivery Date', qty_col: 'Total Pallets'}, 
-        title=title,
-        text=qty_col,  # Add text labels on the bars
-        width=width,    # Set the width of the graph
-        height=height   # Set the height of the graph
-    )
-    
-    # Customize text position for better visibility
-    fig.update_traces(textposition='outside')  # Places text above the bars
-    
-    return fig
-
-
-# Graphs
-
-# graph1 = create_bar_plot(filtered_data, 'Lst.datum', 'TOTPAL',title='Shipment Profile Without Consolidation')
-# graph2 = create_bar_plot(filtered_data2, 'updated_delivery_date', 'TOTPAL',title='Shipment Profile After Consolidation', width=900, height=350)
-# graph3 = create_bar_plot(filtered_data_n2, 'updated_delivery_date', 'TOTPAL',title='Shipment Profile After Consolidation Approach 2', width=900, height=350)
-
-# Display the graphs
-
-
-# st.header("Before Consolidation")
-# st.plotly_chart(graph1)
 st.header("Consolidation Approach-1")
 col1, col2,col3 = st.columns(3)
 
@@ -413,7 +378,7 @@ st.plotly_chart(fig, use_container_width=True)
     
 #month Basis (use when all dates are populated)
 
-df_a1=pd.read_csv('hypothesis_5_output.csv',parse_dates=['Lst.datum','updated_delivery_date'])
+df_a1=pd.read_excel('hypothesis_5_output.xlsx',parse_dates=['Lst.datum','updated_delivery_date'])
 df_a1['Month_orig'] = df_a1['Lst.datum'].dt.month 
 
 df_a1=df_a1[['Lieferschein','DC', 'Customer Clients data', 'Postal Code clients data', 'Street','Month_orig','Lst.datum','updated_delivery_date','delay','TOTPAL']]
@@ -438,7 +403,7 @@ colc.metric("SLA", f"{SLA:,.2f}%")
 cold.metric("Average delay per pallet (days)", f"{delay_per_pallet:,.2f} days")
 
 
-df_a2=pd.read_csv('order_level_updated_delivery_date (1).csv',parse_dates=['Lst.datum','updated_delivery_date'])
+df_a2=pd.read_excel('order_level_updated_delivery_date (1).xlsx',parse_dates=['Lst.datum','updated_delivery_date'])
 df_a2['Month_orig'] = df_a2['Lst.datum'].dt.month 
 
 df_a2=df_a2[['Lieferschein','DC', 'Customer Clients data', 'Postal Code clients data', 'Street','Month_orig','Lst.datum','updated_delivery_date','delay','TOTPAL']]
