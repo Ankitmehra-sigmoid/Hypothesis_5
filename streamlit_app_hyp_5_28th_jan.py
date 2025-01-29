@@ -131,9 +131,9 @@ data = load_original_data()
 data2 = load_approach_1_data()
 data_up_nitish = load_approach_2_data()
 
-data['Lst.datum']=pd.to_datetime(data['Lst.datum'],format='%d/%m/%y')
-data2['updated_delivery_date']=pd.to_datetime(data2['updated_delivery_date'],format='%d/%m/%y')
-data_up_nitish['updated_delivery_date']=pd.to_datetime(data_up_nitish['updated_delivery_date'],format='%d/%m/%y')
+data['Lst.datum']=pd.to_datetime(data['Lst.datum'],format='%d/%m/%y',errors='coerce')
+data2['updated_delivery_date']=pd.to_datetime(data2['updated_delivery_date'],format='%d/%m/%y',errors='coerce')
+data_up_nitish['updated_delivery_date']=pd.to_datetime(data_up_nitish['updated_delivery_date'],format='%d/%m/%y',errors='coerce')
 
 # data=pd.read_csv('df_original_scenario_new_pbi.csv',parse_dates=['Lst.datum'])
 
