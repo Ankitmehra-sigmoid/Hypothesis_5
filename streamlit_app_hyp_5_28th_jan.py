@@ -282,10 +282,10 @@ df_a1_filtered['pallest_into_delay']=df_a1_filtered['delay']*df_a1_filtered['TOT
 delay_per_pallet=df_a1_filtered['pallest_into_delay'].sum()/df_a1_filtered['TOTPAL'].sum()
 ###########################################################
 df_a2_filtered=df_a2[(df_a2['Customer Clients data']==customers) & (df_a2['Postal Code clients data']==postal_code) &  (df_a2['Street']==street) &  (df_a2['DC']==dc) & (df_a2['Month_orig'].isin(months))]
-
+print('df_2_filtered shape',df_a2_filtered.shape)
 unique_orders_2=df_a2_filtered['Lieferschein'].nunique()
 unique_orders_with_delay_2=df_a2_filtered[df_a2_filtered['delay']>0]['Lieferschein'].nunique()
-
+print('unique_orders_with_delay_2',unique_orders_with_delay_2)
 SLA_2=100-100*(unique_orders_with_delay_2/unique_orders_2)
 
 df_a2_filtered['pallest_into_delay']=df_a2_filtered['delay']*df_a2_filtered['TOTPAL']
