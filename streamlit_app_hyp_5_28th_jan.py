@@ -285,7 +285,6 @@ savings_nitish=original_cost_nitish-updated_cost_nitish
 # print('df_2_filtered shape',df_a2_filtered.shape)
 # unique_orders_2=df_a2_filtered['Lieferschein'].nunique()
 # unique_orders_with_delay_2=df_a2_filtered[df_a2_filtered['delay']>0]['Lieferschein'].nunique()
-
 # SLA_2=100-100*(unique_orders_with_delay_2/unique_orders_2)
 
 # df_a2_filtered['pallest_into_delay']=df_a2_filtered['delay']*df_a2_filtered['TOTPAL']
