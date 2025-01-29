@@ -455,8 +455,8 @@ st.plotly_chart(fig, use_container_width=True)
 
 
 
-df_a1=pd.read_csv('hypothesis_5_output.csv')
-df_a1['Lst.datum']=pd.to_datetime(df_a1['Lst.datum'],format='%d/%m/%y',errors='coerce')
+df_a1=pd.read_csv('hypothesis_5_output.csv',parse_dates=['Lst.datum'])
+# df_a1['Lst.datum']=pd.to_datetime(df_a1['Lst.datum'],format='%d/%m/%y',errors='coerce')
 df_a1['Month_orig'] = df_a1['Lst.datum'].dt.month 
 
 df_a1=df_a1[['Lieferschein','DC', 'Customer Clients data', 'Postal Code clients data', 'Street','Month_orig','Lst.datum','updated_delivery_date','delay','TOTPAL']]
@@ -481,8 +481,8 @@ colc.metric("SLA", f"{SLA:,.2f}%")
 cold.metric("Average delay per pallet (days)", f"{delay_per_pallet:,.2f} days")
 
 
-df_a2=pd.read_csv('order_level_updated_delivery_date (2).csv')
-df_a2['Lst.datum']=pd.to_datetime(df_a2['Lst.datum'],format='%d/%m/%y',errors='coerce')
+df_a2=pd.read_csv('order_level_updated_delivery_date (2).csv',parse_dates=['Lst.datum'])
+# df_a2['Lst.datum']=pd.to_datetime(df_a2['Lst.datum'],format='%d/%m/%y',errors='coerce')
 df_a2['Month_orig'] = df_a2['Lst.datum'].dt.month 
 
 df_a2=df_a2[['Lieferschein','DC', 'Customer Clients data', 'Postal Code clients data', 'Street','Month_orig','Lst.datum','updated_delivery_date','delay','TOTPAL']]
