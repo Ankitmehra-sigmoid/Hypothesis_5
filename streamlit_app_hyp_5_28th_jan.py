@@ -142,7 +142,8 @@ data2 = load_approach_1_data()
 data_up_nitish = load_approach_2_data()
 
 # data['Lst.datum']=pd.to_datetime(data['Lst.datum'],format='%d/%m/%y',errors='coerce')
-# data['Month_orig'] = data['Lst.datum'].dt.month 
+data['Lst.datum']=pd.to_datetime(data['Lst.datum'])
+data['Month_orig'] = data['Lst.datum'].dt.month 
 
 # data2['updated_delivery_date']=pd.to_datetime(data2['updated_delivery_date'],format='%d/%m/%y',errors='coerce')
 # data_up_nitish['updated_delivery_date']=pd.to_datetime(data_up_nitish['updated_delivery_date'],format='%d/%m/%y',errors='coerce')
