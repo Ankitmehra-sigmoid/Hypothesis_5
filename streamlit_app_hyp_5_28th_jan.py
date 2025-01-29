@@ -114,17 +114,17 @@ st.set_page_config(layout="wide")
 @st.cache_data
 def load_original_data():
     """Load and cache the original dataset."""
-    return pd.read_csv('df_original_scenario_new_pbi.csv',parse_dates=['Lst.datum'])
+    return pd.read_csv('df_original_scenario_new_pbi.csv')
 
 @st.cache_data
 def load_approach_1_data():
     """Load and cache the approach 1 dataset."""
-    return pd.read_csv('df_approach_1_pbi.csv',parse_dates=['updated_delivery_date'])
+    return pd.read_csv('df_approach_1_pbi.csv')
 
 @st.cache_data
 def load_approach_2_data():
     """Load and cache the approach 2 dataset."""
-    return pd.read_csv('df_approach_2_pbi.csv',parse_dates=['updated_delivery_date'])
+    return pd.read_csv('df_approach_2_pbi.csv')
 
 @st.cache_data
 def load_approach_1_raw_data():
