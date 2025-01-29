@@ -146,7 +146,6 @@ df_a1['Month_orig'] = df_a1['Lst.datum'].dt.month
 
 
 # data=pd.read_csv('df_original_scenario_new_pbi.csv',parse_dates=['Lst.datum'])
-
 # data2=pd.read_csv('df_approach_1_pbi.csv',parse_dates=['updated_delivery_date'])
 
 # data_up_nitish=pd.read_csv('df_approach_2_pbi.csv',parse_dates=['updated_delivery_date'])
