@@ -148,10 +148,12 @@ data_up_nitish['updated_delivery_date']=pd.to_datetime(data_up_nitish['updated_d
 df_a1 = load_approach_1_raw_data()
 df_a1['Lst.datum']=pd.to_datetime(df_a1['Lst.datum'],format='%d/%m/%y',errors='coerce')
 df_a1['Month_orig'] = df_a1['Lst.datum'].dt.month 
+df_a1['delay']=df_a1['delay'].astype(int)
 
 df_a2 = load_approach_2_raw_data()
 df_a2['Lst.datum']=pd.to_datetime(df_a2['Lst.datum'],format='%d/%m/%y',errors='coerce')
 df_a2['Month_orig'] = df_a2['Lst.datum'].dt.month 
+df_a2['delay']=df_a2['delay'].astype(int)
 
 
 # data=pd.read_csv('df_original_scenario_new_pbi.csv',parse_dates=['Lst.datum'])
