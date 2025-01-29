@@ -141,7 +141,7 @@ data2['updated_delivery_date']=pd.to_datetime(data2['updated_delivery_date'],for
 data_up_nitish['updated_delivery_date']=pd.to_datetime(data_up_nitish['updated_delivery_date'],format='%d/%m/%y',errors='coerce')
 
 df_a1 = load_approach_1_raw_data()
-df_a1['Lst.datum']=d.to_datetime(df_a1['Lst.datum'],format='%d/%m/%y',errors='coerce')
+df_a1['Lst.datum']=pd.to_datetime(df_a1['Lst.datum'],format='%d/%m/%y',errors='coerce')
 df_a1['Month_orig'] = df_a1['Lst.datum'].dt.month 
 
 
