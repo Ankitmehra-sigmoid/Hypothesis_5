@@ -111,19 +111,43 @@ def add_weekend_data(df, year_col='Lst.datum', week_col='week_of_year', totpal_c
 
 
 ##### approach where base cost calculation is done using nitish cost calc function +  all dates
-data=pd.read_csv('df_original_scenario_new_pbi.csv',parse_dates=['Lst.datum'])
+@st.cache_data
+def load_original_data():
+    """Load and cache the original dataset."""
+    return pd.read_csv('df_original_scenario_new_pbi.csv')
 
-data2=pd.read_csv('df_approach_1_pbi.csv',parse_dates=['updated_delivery_date'])
+@st.cache_data
+def load_approach_1_data():
+    """Load and cache the approach 1 dataset."""
+    return pd.read_csv('df_approach_1_pbi.csv')
 
-data_up_nitish=pd.read_csv('df_approach_2_pbi.csv',parse_dates=['updated_delivery_date'])
+@st.cache_data
+def load_approach_2_data():
+    """Load and cache the approach 2 dataset."""
+    return pd.read_csv('df_approach_2_pbi.csv')
+
+# Load cached datasets
+data = load_original_data()
+data2 = load_approach_1_data()
+data_up_nitish = load_approach_2_data()
+
+data['Lst.datum']=pd.to_datetime(data['Lst.datum'])
+data2['updated_delivery_date']=pd.to_datetime(data2['updated_delivery_date'])
+data_up_nitish['updated_delivery_date']=pd.to_datetime(data_up_nitish['updated_delivery_date'])
+
+# data=pd.read_csv('df_original_scenario_new_pbi.csv',parse_dates=['Lst.datum'])
+
+# data2=pd.read_csv('df_approach_1_pbi.csv',parse_dates=['updated_delivery_date'])
+
+# data_up_nitish=pd.read_csv('df_approach_2_pbi.csv',parse_dates=['updated_delivery_date'])
 
 
 df_best_scenario=pd.read_csv('df_best_scenario_info_approach_2.csv')
 
 
 ## adding Week column
-data2['week_of_year'] = data2['updated_delivery_date'].apply(lambda x: x.isocalendar().week)
-data_up_nitish['week_of_year'] = data_up_nitish['updated_delivery_date'].apply(lambda x: x.isocalendar().week)
+# data2['week_of_year'] = data2['updated_delivery_date'].apply(lambda x: x.isocalendar().week)
+# data_up_nitish['week_of_year'] = data_up_nitish['updated_delivery_date'].apply(lambda x: x.isocalendar().week)
 
 # Filters
 # st.sidebar.header("Filters")
