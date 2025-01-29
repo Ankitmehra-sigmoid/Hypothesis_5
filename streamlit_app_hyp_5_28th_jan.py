@@ -131,6 +131,11 @@ def load_approach_1_raw_data():
     """Load and cache the approach 2 dataset."""
     return pd.read_csv("hypothesis_5_output.csv")
 
+@st.cache_data
+def load_approach_2_raw_data():
+    """Load and cache the approach 2 dataset."""
+    return pd.read_csv("order_level_updated_delivery_date (1).csv")
+
 # Load cached datasets
 data = load_original_data()
 data2 = load_approach_1_data()
@@ -143,6 +148,10 @@ data_up_nitish['updated_delivery_date']=pd.to_datetime(data_up_nitish['updated_d
 df_a1 = load_approach_1_raw_data()
 df_a1['Lst.datum']=pd.to_datetime(df_a1['Lst.datum'],format='%d/%m/%y',errors='coerce')
 df_a1['Month_orig'] = df_a1['Lst.datum'].dt.month 
+
+df_a2 = load_approach_2_raw_data()
+df_a2['Lst.datum']=pd.to_datetime(df_a2['Lst.datum'],format='%d/%m/%y',errors='coerce')
+df_a2['Month_orig'] = df_a2['Lst.datum'].dt.month 
 
 
 # data=pd.read_csv('df_original_scenario_new_pbi.csv',parse_dates=['Lst.datum'])
@@ -269,24 +278,41 @@ SLA=100-100*(unique_orders_with_delay/unique_orders)
 df_a1_filtered['pallest_into_delay']=df_a1_filtered['delay']*df_a1_filtered['TOTPAL']
 
 delay_per_pallet=df_a1_filtered['pallest_into_delay'].sum()/df_a1_filtered['TOTPAL'].sum()
-############
+###########################################################
+df_a2_filtered=df_a2[(df_a2['Customer Clients data']==customers) & (df_a2['Postal Code clients data']==postal_code) &  (df_a2['Street']==street) &  (df_a2['DC']==dc) & (df_a2['Month_orig'].isin(months))]
+
+unique_orders_2=df_a2_filtered['Lieferschein'].nunique()
+unique_orders_with_delay_2=df_a2_filtered[df_a2_filtered['delay']>0]['Lieferschein'].nunique()
+
+SLA_2=100-100*(unique_orders_with_delay_2/unique_orders_2)
+
+df_a2_filtered['pallest_into_delay']=df_a2_filtered['delay']*df_a2_filtered['TOTPAL']
+
+delay_per_pallet_2=df_a2_filtered['pallest_into_delay'].sum()/df_a2_filtered['TOTPAL'].sum()
+
+
+
 st.header("Consolidation Approach-1")
-col1, col2,col3,colc,cold = st.columns(5)
+col1, col2,col3,cola,colb = st.columns(5)
 
 col1.metric("Total cost original (2023)", f"${original_cost:,.2f}")
 col2.metric("Total cost updated (2023)", f"${updated_cost:,.2f}")
 col3.metric("Total Savings (2023)", f"${savings:,.2f}")
-colc.metric("SLA", f"{SLA:,.2f}%")
-cold.metric("Average delay per pallet (days)", f"{delay_per_pallet:,.2f} days")
+cola.metric("SLA", f"{SLA:,.2f}%")
+colb.metric("Average delay per pallet (days)", f"{delay_per_pallet:,.2f} days")
 
 # st.plotly_chart(graph2)
 
 st.header("Consolidation Approach-2")
-col4, col5,col6 = st.columns(3)
+col4, col5,col6,colc,cold = st.columns(3)
 
 col4.metric("Total cost original (2023)", f"${original_cost_nitish:,.2f}")
 col5.metric("Total cost updated (2023)", f"${updated_cost_nitish:,.2f}")
 col6.metric("Total Savings (2023)", f"${savings_nitish:,.2f}")
+colc.metric("SLA", f"{SLA_2:,.2f}%")
+cold.metric("Average delay per pallet (days)", f"{delay_per_pallet_2:,.2f} days")
+
+
 # st.plotly_chart(graph3)
                         
                         
@@ -425,32 +451,9 @@ st.plotly_chart(fig, use_container_width=True)
 
 
 
-# cola.metric("Total unique orders", f"{unique_orders:,.2f}")
-# colb.metric("Total delayed orders after consolidation", f"{unique_orders_with_delay:,.2f}")
 
 
-# df_a2=pd.read_csv('order_level_updated_delivery_date (1).csv',parse_dates=['Lst.datum','updated_delivery_date'])
-# df_a2['Month_orig'] = df_a2['Lst.datum'].dt.month 
 
-# df_a2=df_a2[['Lieferschein','DC', 'Customer Clients data', 'Postal Code clients data', 'Street','Month_orig','Lst.datum','updated_delivery_date','delay','TOTPAL']]
 
-# df_a2_filtered=df_a2[(df_a2['Customer Clients data']==customers) & (df_a2['Postal Code clients data']==postal_code) &  (df_a2['Street']==street) &  (df_a2['DC']==dc) & (df_a2['Month_orig'].isin(months))]
-
-# unique_orders=df_a2_filtered['Lieferschein'].nunique()
-# unique_orders_with_delay=df_a2_filtered[df_a2_filtered['delay']>0]['Lieferschein'].nunique()
-
-# SLA=100-100*(unique_orders_with_delay/unique_orders)
-
-# df_a2_filtered['pallest_into_delay']=df_a2_filtered['delay']*df_a2_filtered['TOTPAL']
-
-# delay_per_pallet=df_a2_filtered['pallest_into_delay'].sum()/df_a2_filtered['TOTPAL'].sum()
-
-# st.header("Consolidation Approach-2")
-# colc,cold = st.columns(2)
-
-# # cola.metric("Total unique orders", f"{unique_orders:,.2f}")
-# # colb.metric("Total delayed orders after consolidation", f"{unique_orders_with_delay:,.2f}")
-# colc.metric("SLA", f"{SLA:,.2f}%")
-# cold.metric("Average delay per pallet (days)", f"{delay_per_pallet:,.2f} days")
 
 
