@@ -298,7 +298,7 @@ savings_nitish=original_cost_nitish-updated_cost_nitish
 
 
 st.header("Consolidation Approach-1")
-col1, col2,col3 = st.columns(5)
+col1, col2,col3 = st.columns(3)
 
 col1.metric("Total cost original (2023)", f"${original_cost:,.2f}")
 col2.metric("Total cost updated (2023)", f"${updated_cost:,.2f}")
