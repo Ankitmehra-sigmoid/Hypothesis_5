@@ -129,7 +129,7 @@ def load_approach_2_data():
 @st.cache_data
 def load_approach_1_raw_data():
     """Load and cache the approach 2 dataset."""
-    return pd.read_csv("'hypothesis_5_output.csv")
+    return pd.read_csv("hypothesis_5_output.csv",usecols=['Lieferschein','DC', 'Customer Clients data', 'Postal Code clients data', 'Street','Month_orig','Lst.datum','updated_delivery_date','delay','TOTPAL'])
 
 # Load cached datasets
 data = load_original_data()
